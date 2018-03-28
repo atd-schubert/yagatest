@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {MapBaseData} from "./mapBaseData";
+import {Component, ViewChild} from '@angular/core';
+import {MapComponent} from '@yaga/leaflet-ng2';
+import {MapBaseData} from './mapBaseData';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,7 @@ import {MapBaseData} from "./mapBaseData";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+    @ViewChild('mainMap', {read: MapComponent}) private mainMapComponent: MapComponent;
     /**
      * Has the basic map data.
      * @type {MapBaseData}
@@ -26,6 +27,9 @@ export class AppComponent {
      */
     protected switch() {
         this.tableViewState = !this.tableViewState;
+        setTimeout(() => {
+          this.mainMapComponent.invalidateSize();
+        }, 10);
     }
 
 }

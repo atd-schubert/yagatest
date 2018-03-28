@@ -3,6 +3,7 @@
         *ngIf="mapBaseData"
         [ngClass]="{'map-full': tableViewState === false}">
         <yaga-map
+            #mainMap
             [(zoom)]="mapBaseData.initialZoomFactor"
             [lat]="mapBaseData.initialLat"
             [lng]="mapBaseData.initialLon">
